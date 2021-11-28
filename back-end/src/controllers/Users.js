@@ -33,3 +33,21 @@ exports.updateStudent = async(req, res) => {
         },
     )
 }
+
+exports.readStudents = async(req, res) => {
+    const list = []
+
+    await conn.query('SELECT * FROM students', (err, rows, fields) => {
+        if (err) {
+            return res
+                .status(400)
+                .json({ error: true, message: 'Failed to fetch data' })
+        }
+
+        rows.forEach((student) => {
+            list.push(student)
+        })
+
+        return res.status(200).json({ error: false, data: list })
+    })
+}
