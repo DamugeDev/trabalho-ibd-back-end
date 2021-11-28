@@ -6,6 +6,7 @@ module.exports = (app) => {
     app.post('/new', Users.newStudent)
     app.post('/update/student', Users.updateStudent)
     app.get('/students', Users.readStudents)
+    app.get('/students/:id_student', Users.readById)
 
     // login
     app.post('/login', Login.loginStudent)
