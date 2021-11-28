@@ -4,6 +4,7 @@ const Users = require('../controllers/Users')
 module.exports = (app) => {
     // post users
     app.post('/new', Users.newStudent)
+    app.post('/update/student', Users.updateStudent)
 
     // login
     app.post('/login', Login.loginStudent)
