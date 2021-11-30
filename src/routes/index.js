@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.get('/admin/:id', Users.readById);
 
   // login
-  // app.post('/login', Login.loginStudent);
+  app.post('/login', Login.loginStudent);
   app.post('/admin/login', Login.loginAdmin);
 
   // no response
