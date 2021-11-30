@@ -6,10 +6,10 @@ module.exports = (app) => {
   app.post('/new', Users.newStudent);
   app.post('/update/student', Users.updateStudent);
   app.get('/students', Users.readStudents);
-  app.get('/students/:id_student', Users.readById);
+  app.get('/admin/:id', Users.readById);
 
   // login
-  app.post('/login', Login.loginStudent);
+  // app.post('/login', Login.loginStudent);
   app.post('/admin/login', Login.loginAdmin);
 
   // no response
