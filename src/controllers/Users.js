@@ -35,10 +35,10 @@ exports.updateStudent = async (req, res) => {
   );
 };
 
-exports.readStudents = async (req, res) => {
+exports.readStudents = (req, res) => {
   const list = [];
 
-  await conn.query('SELECT * FROM students', (err, rows, fields) => {
+  conn.query('SELECT * FROM students', (err, rows, fields) => {
     if (err) {
       return res
         .status(400)
