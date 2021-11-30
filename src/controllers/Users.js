@@ -53,29 +53,26 @@ exports.readStudents = async (req, res) => {
   });
 };
 
-exports.readById = async (req, res) => {
-  const { id_student } = req.params;
+exports.readById = (req, res) => {
+  const { id } = req.params;
   const list = [];
 
-  await conn.query(
-    `SELECT * FROM students WHERE id_student = ${id_student}`,
-    (err, rows, fields) => {
-      if (err) {
-        console.log(err);
-        return res
-          .status(400)
-          .json({ error: true, message: 'Failed to fetch data' });
-      }
-
-      rows.forEach((student) => {
-        list.push(student);
-      });
-
-      if (list == []) {
-        return res.status(404).json({ error: true, message: 'Not found' });
-      }
-
-      return res.status(200).json({ error: false, data: list });
+  conn.query(`SELECT * FROM admin WHERE id = ${id}`, (err, rows, fields) => {
+    if (err) {
+      console.log(err);
+      return res
+        .status(400)
+        .json({ error: true, message: 'Failed to fetch data' });
     }
-  );
+
+    rows.forEach((student) => {
+      list.push(student);
+    });
+
+    if (list.length == 0) {
+      return res.status(404).json({ error: true, message: 'Not found' });
+    }
+
+    return res.status(200).json({ error: false, data: list });
+  });
 };
