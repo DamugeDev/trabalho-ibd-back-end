@@ -6,6 +6,7 @@ module.exports = (app) => {
   app.post('/new', Users.newStudent);
   app.post('/update/student', Users.updateStudent);
   app.get('/students', Users.readStudents);
+  app.get('/remove/students/:id', Users.removeStudentById);
   app.get('/admin/:id', Users.readById);
 
   // login

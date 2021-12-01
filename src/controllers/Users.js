@@ -53,6 +53,23 @@ exports.readStudents = (req, res) => {
   });
 };
 
+exports.removeStudentById = (req, res) => {
+  const { id } = req.params;
+  const list = [];
+  const sql = 'DELETE FROM students WHERE id_student = ?';
+
+  conn.query(sql, id, (err, rows, fields) => {
+    if (err) {
+      console.log(err);
+      return res
+        .status(400)
+        .json({ error: true, message: 'Failed to fetch data' });
+    }
+
+    return res.status(200).json({ error: false, status: 'Deleted' });
+  });
+};
+
 exports.readById = (req, res) => {
   const { id } = req.params;
   const list = [];
